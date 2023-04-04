@@ -43,7 +43,7 @@ export class AsyncStreamEmitter<T> {
 	};
 
 	killListenerConsumer(consumerId: number): void {
-		this._listenerDemux.killConsumer(consumerId);
+		this._listenerDemux.kill(consumerId);
 	};
 
 	getListenerBackpressure(eventName?: string): number;
