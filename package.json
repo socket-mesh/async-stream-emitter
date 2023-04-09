@@ -63,6 +63,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "@socket-mesh/stream-demux": "9.0.4"
+    "@socket-mesh/stream-demux": "9.0.5"
   }
 }

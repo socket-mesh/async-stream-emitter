@@ -29,11 +29,11 @@ describe('AsyncStreamEmitter', () => {
   });
 
   it('should expose a closeListener method', () => {
-    expect(!!streamEmitter.closeListener).toBe(true);
+    expect(!!streamEmitter.closeListeners).toBe(true);
   });
 
   it('should expose a closeAllListeners method', () => {
-    expect(!!streamEmitter.closeAllListeners).toBe(true);
+    expect(!!streamEmitter.closeListeners).toBe(true);
   });
 
   it('should expose a getListenerConsumerStats method', () => {
@@ -41,15 +41,15 @@ describe('AsyncStreamEmitter', () => {
   });
 
   it('should expose a killListener method', () => {
-    expect(!!streamEmitter.killListener).toBe(true);
+    expect(!!streamEmitter.killListeners).toBe(true);
   });
 
   it('should expose a killAllListeners method', () => {
-    expect(!!streamEmitter.killAllListeners).toBe(true);
+    expect(!!streamEmitter.killListeners).toBe(true);
   });
 
   it('should expose a killListenerConsumer method', () => {
-    expect(!!streamEmitter.killListenerConsumer).toBe(true);
+    expect(!!streamEmitter.killListeners).toBe(true);
   });
 
   it('should expose a getListenerBackpressure method', () => {
