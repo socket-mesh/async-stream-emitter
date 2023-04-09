@@ -24,8 +24,8 @@ describe('AsyncStreamEmitter', () => {
     expect(!!streamEmitter.emit).toBe(true);
   });
 
-  it('should expose a listener method', () => {
-    expect(!!streamEmitter.listener).toBe(true);
+  it('should expose a listen method', () => {
+    expect(!!streamEmitter.listen).toBe(true);
   });
 
   it('should expose a closeListener method', () => {
