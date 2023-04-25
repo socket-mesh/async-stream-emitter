@@ -12,7 +12,7 @@ export class AsyncStreamEmitter<T> {
 	}
 
 	listen(eventName: string): DemuxedConsumableStream<T> {
-		return this._listenerDemux.stream(eventName);
+		return this._listenerDemux.listen(eventName);
 	}
 
 	closeListeners(): void
