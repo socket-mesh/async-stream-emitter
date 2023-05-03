@@ -1,6 +1,6 @@
 {
   "name": "@socket-mesh/async-stream-emitter",
-  "version": "4.2.6",
+  "version": "4.2.7",
   "description": "An alternantive to EventEmitter using consumable streams.",
   "main": "index.js",
   "type": "module",
@@ -62,6 +62,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "@socket-mesh/stream-demux": "9.0.6"
+    "@socket-mesh/stream-demux": "9.0.7"
   }
 }
