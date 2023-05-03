@@ -11,6 +11,7 @@ export class AsyncStreamEmitter<T> {
 		this._listenerDemux.write(eventName, data);
 	}
 
+	listen<U extends T = T>(eventName: string): DemuxedConsumableStream<U>;
 	listen(eventName: string): DemuxedConsumableStream<T> {
 		return this._listenerDemux.listen(eventName);
 	}
