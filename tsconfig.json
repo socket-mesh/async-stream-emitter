@@ -1,21 +1,21 @@
 {
-  "compilerOptions": {
+	"compilerOptions": {
 		"rootDir": "./src",
-    "outDir": "./dist/",
-    "noImplicitAny": true,
-    "module": "ES2020",
-    "target": "ES2020",
+		"outDir": "./dist/",
+		"noImplicitAny": true,
+		"module": "ES2020",
+		"target": "ES2020",
 		"declaration": true,
 		"allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+		"moduleResolution": "node",
 		"esModuleInterop": true,
 		"sourceMap": true,
 		"lib": ["ES2020", "dom"]
-  },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "ES2020"
-    }
-  },
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "ES2020"
+		}
+	},
 	"exclude": ["test", "dist", "**/*.spec.ts", "jest.config.ts", "webpack.config.ts"]
 }
