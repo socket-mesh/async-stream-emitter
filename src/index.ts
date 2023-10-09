@@ -1,10 +1,19 @@
 import { DemuxedConsumableStream, StreamDemux, StreamDemuxStats } from "@socket-mesh/stream-demux";
 
+export interface AsyncStreamEmitterOptions {
+	usabilityMode?: boolean;
+}
+
 export class AsyncStreamEmitter<T> {
+	usabilityMode : boolean;
+
 	private _listenerDemux: StreamDemux<T>;
 
-	constructor() {
-  	this._listenerDemux = new StreamDemux<T>();
+	constructor(options?: AsyncStreamEmitterOptions) {
+		let { usabilityMode } = options || {};
+		
+		this.usabilityMode = usabilityMode;
+		this._listenerDemux = new StreamDemux<T>();
 	}
 
 	emit(eventName: string, data: T): void {
@@ -13,7 +22,7 @@ export class AsyncStreamEmitter<T> {
 
 	listen<U extends T = T>(eventName: string): DemuxedConsumableStream<U>;
 	listen(eventName: string): DemuxedConsumableStream<T> {
-		return this._listenerDemux.listen(eventName);
+		return this._listenerDemux.listen(eventName, this.usabilityMode);
 	}
 
 	closeListeners(): void

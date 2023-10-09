@@ -1,4 +1,4 @@
-import { AsyncStreamEmitter } from "../src/index";
+import { AsyncStreamEmitter } from "../src/index.js";
 import { beforeEach, afterEach, describe, it, expect } from '@jest/globals';
 
 let pendingTimeoutSet = new Set<NodeJS.Timeout>();
