@@ -17,5 +17,5 @@
 			"module": "ES2020"
 		}
 	},
-	"exclude": ["test", "dist", "**/*.spec.ts", "jest.config.ts", "webpack.config.ts"]
+	"exclude": ["test", "dist", "**/*.spec.ts"]
 }
