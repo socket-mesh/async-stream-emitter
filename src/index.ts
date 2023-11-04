@@ -1,10 +1,50 @@
 import { DemuxedConsumableStream, StreamDemux, StreamDemuxStats } from "@socket-mesh/stream-demux";
 
+export interface EventEmitter {
+	emit(eventName: string | symbol, ...args: any[]): boolean;
+
+	listenerCount?(eventName: string | symbol, listener?: Function): number;
+
+	on(eventName: string | symbol, listener: (...args: any[]) => void): this;
+}
+
 export class AsyncStreamEmitter<T> {
 	private _listenerDemux: StreamDemux<T>;
 
 	constructor() {
 		this._listenerDemux = new StreamDemux<T>();
+	}
+
+	static from<T>(object: EventEmitter): AsyncStreamEmitter<T> {
+		const result = new AsyncStreamEmitter<T>();
+
+		const objEmitMethod = object.emit.bind(object) as (eventName: string | symbol, ...args: any[]) => boolean;
+		const resultEmitMethod = result.emit.bind(result) as (eventName: string, data: T) => void;
+
+		object.emit = result.emit = (eventName: string, data: T): boolean => {
+			const result = objEmitMethod(eventName, data);
+			resultEmitMethod(eventName, data);
+
+			return result;
+		};
+
+		// Prevent EventEmitter from throwing on error.
+		if (object.on) {
+			object.on('error', () => {});
+		}
+
+		if (object.listenerCount) {
+			const objListenerCountMethod = object.listenerCount.bind(object) as (eventName: string | symbol, listener?: Function) => number;
+
+			object.listenerCount = (eventName: string | symbol, listener?: Function): number => {
+				const eventListenerCount = objListenerCountMethod(eventName, listener);
+				const streamConsumerCount = result.getListenerConsumerCount(eventName as string);
+
+				return eventListenerCount + streamConsumerCount;
+			};
+		}
+
+		return result;		
 	}
 
 	emit(eventName: string, data: T): void {
