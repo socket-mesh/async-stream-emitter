@@ -22,7 +22,7 @@ function cancelAllPendingWaits() {
 }
 
 describe('AsyncStreamEmitter', () => {
-	describe('Standard Tests', () => {
+	describe('Functionality tests', () => {
 		let streamEmitter: AsyncStreamEmitter<string>;
 		let packets: string[];
 
