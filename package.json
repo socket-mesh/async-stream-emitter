@@ -1,6 +1,6 @@
 {
 	"name": "@socket-mesh/async-stream-emitter",
-	"version": "7.0.2",
+	"version": "7.0.3",
 	"description": "An alternantive to EventEmitter using consumable streams.",
 	"main": "index.js",
 	"type": "module",
@@ -40,6 +40,6 @@
 		"ts-node": "^10.9.1"
 	},
 	"dependencies": {
-		"@socket-mesh/stream-demux": "10.0.1"
+		"@socket-mesh/stream-demux": "10.0.2"
 	}
 }
