@@ -414,10 +414,12 @@ describe('AsyncStreamEmitter', () => {
 	});
 
 	describe('From Tests', () => {
+		let emitter: EventEmitter;
 		let streamEmitter: AsyncStreamEmitter<string>;
 		
 		beforeEach(async () => {
-			streamEmitter = AsyncStreamEmitter.from<string>(new EventEmitter());
+			emitter = new EventEmitter();
+			streamEmitter = AsyncStreamEmitter.from<string>(emitter);
 		});
 	
 		afterEach(async () => {
@@ -474,6 +476,21 @@ describe('AsyncStreamEmitter', () => {
 	
 			let data = await streamEmitter.listen('test').once();
 			assert.strictEqual(data, 'abc');
+		});
+
+		it('should retain the original emitter functionality', () => {
+			let b = '';
+			let c = '';
+
+			emitter.on('a', (b1, c1) => {
+				b = b1;
+				c = c1;
+			});
+
+			emitter.emit('a', 'b', 'c');
+
+			assert.strictEqual(b, 'b');
+			assert.strictEqual(c, 'c');
 		});
 	});
 });
