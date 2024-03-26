@@ -1,4 +1,4 @@
-import { DemuxedConsumableStream, StreamDemux, StreamDemuxStats } from "@socket-mesh/stream-demux";
+import { DemuxedConsumableStream, StreamDemux, StreamDemuxStats, StreamEvent } from "@socket-mesh/stream-demux";
 
 export interface EventEmitter {
 	emit(eventName: string | symbol, ...args: any[]): boolean;
@@ -51,7 +51,9 @@ export class AsyncStreamEmitter<T> {
 		this._listenerDemux.write(eventName, data);
 	}
 
-	listen<U extends T, V = U>(eventName: string): DemuxedConsumableStream<V> {
+	listen(): DemuxedConsumableStream<StreamEvent<T>>;
+	listen<U extends T, V = U>(eventName: string): DemuxedConsumableStream<V>;
+	listen<U extends T, V = U>(eventName?: string): DemuxedConsumableStream<StreamEvent<T>> | DemuxedConsumableStream<V> {
 		return this._listenerDemux.listen(eventName);
 	}
 
